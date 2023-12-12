@@ -7,7 +7,8 @@ import * as cors from "cors";
 import * as swaggerUiExpress from "swagger-ui-express";
 import { port } from "./config";
 import * as morgan from "morgan";
-import BannerCardImagesRoute  from "../src/routes/BrandCardImages.routes";
+import BannerCardImagesRoute  from "./routes/BannerCardImages.routes";
+import  ElectronicsImagesRoute  from "./routes/ElectronicImages.routes";
 import { Request, Response, NextFunction } from "express";
 import AppError from "./utils/AppError";
 
@@ -59,6 +60,7 @@ AppDataSource.initialize()
     });
 
     app.use("/bannercardimages",BannerCardImagesRoute)
+    app.use("/electronicsimages",ElectronicsImagesRoute)
 
     // unhandled routes
     app.all("*", (req: Request, res: Response, next: NextFunction) => {

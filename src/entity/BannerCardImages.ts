@@ -8,6 +8,12 @@ export class BannerCardImages {
     @Column()
     image:string
 
+    @CreateDateColumn()
+    createdAt:Date
+
+    @UpdateDateColumn()
+    updatedAt:Date
+
     
 
 
