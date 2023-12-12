@@ -1,8 +1,6 @@
 import {Router } from "express"
 import { Upload } from "../utils/Upload";
-
-import { deleteElectronicsImages, getElectronicsImages, postElectronicsImages } from "../controller/ElectronicImages.controller";
-
+import { deleteFurniture, getFurniture, postFurniture } from "../controller/Furniture.controller";
 
 const router=Router()
 
@@ -10,55 +8,57 @@ const router=Router()
  * @swagger
  * components:
  *   schemas:
- *     ElectronicsImagesDto:
+ *     FurnitureDto:
  *         type: object                
  *         properties:
  *           name:
  *             type: string
  *           description:
  *             type: string
+ *           price:
+ *             type: string
  *           image:
  *             type: array
  *             items: 
  *               type: file
- *             description: this is for name of the ElectronicsImages
+ *             description: this is for name of the PersonalCare
  *
  */
 
 /**
  * @swagger
  * tags:
- *   name: ElectronicsImages Record
+ *   name: Furniture Record
  *   description: Record of all  CRUD
  *
  */
 
 /**
  * @swagger
- * /electronicsimages/:
+ * /furniture/:
  *  get:
- *     summary: Use to request all ElectronicsImages Record
- *     tags: [ElectronicsImages Record]
+ *     summary: Use to request all Furniture Record
+ *     tags: [Furniture Record]
  *     responses:
  *        '200':
  *          description: A sucessfull response
  * 
  *  post:
- *     summary: use to update ElectronicsImages Record
- *     tags: [ElectronicsImages Record]
+ *     summary: use to post Furniture Record
+ *     tags: [Furniture Record]
  *     requestBody:
  *       content:
  *         multipart/form-data:
  *           schema:                            
- *             $ref: '#/components/schemas/ElectronicsImagesDto'
+ *             $ref: '#/components/schemas/FurnitureDto'
  *     responses:
  *        '200':
  *          description: A sucessfull response
  * 
- * /electronicsimages/{id}:
+ * /furniture/{id}:
  *  patch:
- *     summary: use to update ElectronicsImages
- *     tags: [ElectronicsImages Record]
+ *     summary: use to update Furniture
+ *     tags: [Furniture Record]
  *     parameters:
  *       - in: path
  *         name: id
@@ -70,13 +70,13 @@ const router=Router()
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ElectronicsImagesDto'
+ *             $ref: '#/components/schemas/FurnitureDto'
  *     responses:
  *        '200':
  *          description: A sucessfull response
  *  delete:
- *     summary: Use to request all ElectronicsImages Record
- *     tags: [ElectronicsImages Record]
+ *     summary: Use to delete Furniture Record
+ *     tags: [Furniture Record]
  *     parameters:
  *       - in: path
  *         name: id
@@ -89,8 +89,12 @@ const router=Router()
  *          description: A sucessfull response
  */
 
-router.route("/").get(getElectronicsImages).post(Upload.array("image"),postElectronicsImages)
 
-router.route("/:id").delete(deleteElectronicsImages)
+router.route("/").post(Upload.array("image"),postFurniture).get(getFurniture);
+
+router.route("/:id").delete(deleteFurniture)
+
+
+
 
 export default router;

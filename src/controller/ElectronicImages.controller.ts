@@ -60,3 +60,25 @@ export const postElectronicsImages =async(req:RequestCustom,res:Response,next:Ne
         next(new AppError(err.statusCode,err.message))
     }
 }
+
+
+export const deleteElectronicsImages =async(req:Request,res:Response,next:NextFunction)=>{
+    try{
+
+        const electronicsImages = await ElectronicsImagesRepo.findOneBy({id:req.params.id})
+
+        if(!electronicsImages){
+            return (next (new AppError(404,"Image with this id is not found.")))
+        }
+
+        await ElectronicsImagesRepo.remove(electronicsImages).then((result)=>{
+            res.status(200).json({
+                message:"succes",
+                result
+            })
+        })
+    }
+    catch(error){
+        next(new AppError(error.statusCode,error.message))
+    }
+}

@@ -9,6 +9,11 @@ import { port } from "./config";
 import * as morgan from "morgan";
 import BannerCardImagesRoute  from "./routes/BannerCardImages.routes";
 import  ElectronicsImagesRoute  from "./routes/ElectronicImages.routes";
+import PersonalCareRoute from "./routes/PersonalCare.routes"
+import FurnitureRoute from "./routes/Furniture.routes"
+import BeautyRoute from "./routes/Beauty.routes"
+import KitchenRoute from "./routes/Kitchen.routes"
+import FashionRoute from "./routes/Fashion.routes"
 import { Request, Response, NextFunction } from "express";
 import AppError from "./utils/AppError";
 
@@ -61,6 +66,11 @@ AppDataSource.initialize()
 
     app.use("/bannercardimages",BannerCardImagesRoute)
     app.use("/electronicsimages",ElectronicsImagesRoute)
+    app.use("/personalcare",PersonalCareRoute)
+    app.use("/furniture",FurnitureRoute)
+    app.use("/beauty",BeautyRoute)
+    // app.use("/kitchen",KitchenRoute)
+    app.use("/fashion",FashionRoute)
 
     // unhandled routes
     app.all("*", (req: Request, res: Response, next: NextFunction) => {

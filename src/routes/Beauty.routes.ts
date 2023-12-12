@@ -1,8 +1,6 @@
 import {Router } from "express"
 import { Upload } from "../utils/Upload";
-
-import { deleteElectronicsImages, getElectronicsImages, postElectronicsImages } from "../controller/ElectronicImages.controller";
-
+import { deleteBeauty, getBeauty, postBeauty } from "../controller/Beauty.controller";
 
 const router=Router()
 
@@ -10,55 +8,57 @@ const router=Router()
  * @swagger
  * components:
  *   schemas:
- *     ElectronicsImagesDto:
+ *     BeautyDto:
  *         type: object                
  *         properties:
  *           name:
  *             type: string
  *           description:
  *             type: string
+ *           price:
+ *             type: string
  *           image:
  *             type: array
  *             items: 
  *               type: file
- *             description: this is for name of the ElectronicsImages
+ *             description: this is for name of the Beauty
  *
  */
 
 /**
  * @swagger
  * tags:
- *   name: ElectronicsImages Record
+ *   name: Beauty Record
  *   description: Record of all  CRUD
  *
  */
 
 /**
  * @swagger
- * /electronicsimages/:
+ * /beauty/:
  *  get:
- *     summary: Use to request all ElectronicsImages Record
- *     tags: [ElectronicsImages Record]
+ *     summary: Use to request all Beauty Record
+ *     tags: [Beauty Record]
  *     responses:
  *        '200':
  *          description: A sucessfull response
  * 
  *  post:
- *     summary: use to update ElectronicsImages Record
- *     tags: [ElectronicsImages Record]
+ *     summary: use to post Beauty Record
+ *     tags: [Beauty Record]
  *     requestBody:
  *       content:
  *         multipart/form-data:
  *           schema:                            
- *             $ref: '#/components/schemas/ElectronicsImagesDto'
+ *             $ref: '#/components/schemas/BeautyDto'
  *     responses:
  *        '200':
  *          description: A sucessfull response
  * 
- * /electronicsimages/{id}:
+ * /beauty/{id}:
  *  patch:
- *     summary: use to update ElectronicsImages
- *     tags: [ElectronicsImages Record]
+ *     summary: use to update Beauty
+ *     tags: [Beauty Record]
  *     parameters:
  *       - in: path
  *         name: id
@@ -70,13 +70,13 @@ const router=Router()
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ElectronicsImagesDto'
+ *             $ref: '#/components/schemas/BeautyDto'
  *     responses:
  *        '200':
  *          description: A sucessfull response
  *  delete:
- *     summary: Use to request all ElectronicsImages Record
- *     tags: [ElectronicsImages Record]
+ *     summary: Use to delete Beauty Record
+ *     tags: [Beauty Record]
  *     parameters:
  *       - in: path
  *         name: id
@@ -87,10 +87,16 @@ const router=Router()
  *     responses:
  *        '200':
  *          description: A sucessfull response
+ * 
+ * 
  */
 
-router.route("/").get(getElectronicsImages).post(Upload.array("image"),postElectronicsImages)
+router.route("/").post(Upload.array("image"),postBeauty).get(getBeauty)
 
-router.route("/:id").delete(deleteElectronicsImages)
+router.route("/:id").delete(deleteBeauty)
+
+
+
+
 
 export default router;

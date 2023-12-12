@@ -44,17 +44,13 @@ export const postBannerCardImages = async(req:Requestcustom,res:Response,next:Ne
             res.status(200).json({
                 message:"success",
                 result
-
             })
         })
-
     }
     catch(err){
         next(new AppError(err.statusCode,err.message))
     }
 }
-
-
 
 export const deleteBannerCardImages=async(req:Request,res:Response,next:NextFunction)=>{
     try{
