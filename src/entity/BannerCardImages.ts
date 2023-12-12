@@ -12,9 +12,7 @@ export class BannerCardImages {
     createdAt:Date
 
     @UpdateDateColumn()
-    updatedAt:Date
-
-    
+    updatedAt:Date   
 
 
 }

@@ -28,7 +28,7 @@ export const getElectronicsImages=async(req:Request,res:Response,next:NextFuncti
 
     }
     catch(err){
-        next(new AppError(err.statusCode,err.statusmessage))
+        next(new AppError(err.statusCode,err.message))
     }
 
 }
@@ -42,20 +42,21 @@ export const postElectronicsImages =async(req:RequestCustom,res:Response,next:Ne
 
         const images =[];
 
-        req.body.map((img:any)=>{
+        req.files.map((img:any)=>{
             images.push(img.filename)
         })
         req.body.image=images
+        console.log(req.body,"here")
 
-        await ElectronicsImagesRepo.save(req.body).then((result)=>{
+        await ElectronicsImagesRepo.save(req.body).then((result:any)=>{
             res.status(200).json({
                 message:"success",
-                result
+                data:result
             })
         })       
 
     }
     catch(err){
-        next(new AppError(err.statusCode,err.statusmessage))
+        next(new AppError(err.statusCode,err.message))
     }
 }
