@@ -14,8 +14,8 @@ export class Furniture {
    @Column()
    price:string
 
-   @Column()
-   image:string
+   @Column("simple-array")
+   image:string[]
 
    @CreateDateColumn()
    createdAt:Date

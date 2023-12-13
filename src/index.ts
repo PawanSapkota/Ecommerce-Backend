@@ -69,7 +69,7 @@ AppDataSource.initialize()
     app.use("/personalcare",PersonalCareRoute)
     app.use("/furniture",FurnitureRoute)
     app.use("/beauty",BeautyRoute)
-    // app.use("/kitchen",KitchenRoute)
+    app.use("/kitchen",KitchenRoute)
     app.use("/fashion",FashionRoute)
 
     // unhandled routes

@@ -5,44 +5,45 @@ import { Fashion } from "../entity/Fashion"
 
 const fashionRepo =AppDataSource.getRepository(Fashion)
 
-interface RequestCustom extends Request {
+interface RequestCustom extends Request{
     files:any
 }
 
-// export const getFashion=async(req:Request,res:Response,next:NextFunction)=>{
-//     try{
-//         const Fashion =await fashionRepo.find({
-//             order:{
-//                 id:"ASC"
-//             }
-//         })
-//         res.status(200).json({
-//             message:"success",
-//             Fashion
-//         })
-//     }
-//     catch(err){
-//         next(new AppError(err.statusCode,err.message))
-//     }
+export const getFashion=async(req:Request,res:Response,next:NextFunction)=>{
+    try{
+        const Fashion =await fashionRepo.find({
+            order:{
+                id:"ASC"
+            }
+        })
+        res.status(200).json({
+            message:"success",
+            Fashion
+        })
+    }
+    catch(err){
+        next(new AppError(err.statusCode,err.message))
+    }
 
-// }
+}
 
 export const postFashion =async(req:RequestCustom,res:Response,next:NextFunction)=>{
     try{
-        const fashionImages =[];
+        const fashionImages = [];
 
         req.files.map((img:any)=>{
             fashionImages.push(img.filename)
         })
-        req.body.image=fashionImages
+        req.body.image = fashionImages
         console.log(req.body,"fashion")
 
-        await fashionRepo.save(req.body).then((result:any)=>{
-            console.log("here fashion")
+        await fashionRepo.save(req.body).then((result:any)=>{           
             res.status(200).json({
                 message:"success",
-                data:result
+                result
             })
+        }).catch((err)=>{
+            next (new AppError(err.statusCode,err.message))
         })       
 
     }
@@ -52,23 +53,23 @@ export const postFashion =async(req:RequestCustom,res:Response,next:NextFunction
 }
 
 
-// export const deleteFashion =async(req:Request,res:Response,next:NextFunction)=>{
-//     try{
+export const deleteFashion =async(req:Request,res:Response,next:NextFunction)=>{
+    try{
 
-//         const fashion = await fashionRepo.findOneBy({id:req.params.id})
+        const fashion = await fashionRepo.findOneBy({id:req.params.id})
 
-//         if(!fashion){
-//             return (next (new AppError(404,"Image with this id is not found.")))
-//         }
+        if(!fashion){
+            return (next (new AppError(404,"Image with this id is not found.")))
+        }
 
-//         await fashionRepo.remove(fashion).then((result)=>{
-//             res.status(200).json({
-//                 message:"succes",
-//                 result
-//             })
-//         })
-//     }
-//     catch(error){
-//         next(new AppError(error.statusCode,error.message))
-//     }
-// }
+        await fashionRepo.remove(fashion).then((result)=>{
+            res.status(200).json({
+                message:"succes",
+                result
+            })
+        })
+    }
+    catch(error){
+        next(new AppError(error.statusCode,error.message))
+    }
+}

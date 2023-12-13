@@ -7,15 +7,15 @@ export class Fashion{
 
     @Column()
     name:string
-
+    
     @Column()
     description:string
 
     @Column()
     price:string
 
-    @Column()
-    image:string
+    @Column("simple-array")
+    image:string[]
 
     @CreateDateColumn()
     createdAt:Date

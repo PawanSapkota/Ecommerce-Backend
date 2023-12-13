@@ -11,8 +11,8 @@ export class ElectronicsImages{
     @Column()
     description:string
 
-    @Column()
-    image:string
+    @Column("simple-array")
+    image:string[]
 
     @CreateDateColumn()
     createdAt:Date

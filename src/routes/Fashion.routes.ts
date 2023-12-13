@@ -1,6 +1,6 @@
 import {Router } from "express"
 import { Upload } from "../utils/Upload";
-import { postFashion } from "../controller/Fashion.controller";
+import { deleteFashion, getFashion, postFashion } from "../controller/Fashion.controller";
 
 const router=Router()
 
@@ -89,10 +89,9 @@ const router=Router()
  *          description: A sucessfull response
  */
 
-router.route("/").post(Upload.array("image"),postFashion)
+router.route("/").post(Upload.array("image"),postFashion).get(getFashion)    
 
-// router.route("/:id").delete(deleteFashion)
-
+router.route("/:id").delete(deleteFashion)
 
 
 export default router;
