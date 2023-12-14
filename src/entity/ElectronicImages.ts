@@ -5,10 +5,10 @@ export class ElectronicsImages{
     @PrimaryGeneratedColumn("uuid")
     id:string
 
-    @Column()
+    @Column({nullable:true})
     name:string
     
-    @Column()
+    @Column({nullable:true})
     description:string
 
     @Column("simple-array")

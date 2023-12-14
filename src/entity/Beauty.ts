@@ -5,13 +5,13 @@ export class Beauty{
     @PrimaryGeneratedColumn("uuid")
     id:string
 
-    @Column()
+    @Column({nullable:true})
     name:string
 
-    @Column()
+    @Column({nullable:true})
     description:string
 
-    @Column()
+    @Column({nullable:true})
     price:string
 
     @Column("simple-array")

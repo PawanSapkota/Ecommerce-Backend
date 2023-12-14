@@ -14,6 +14,10 @@ import FurnitureRoute from "./routes/Furniture.routes"
 import BeautyRoute from "./routes/Beauty.routes"
 import KitchenRoute from "./routes/Kitchen.routes"
 import FashionRoute from "./routes/Fashion.routes"
+import GamingAccessoriesRoute from "./routes/GamingAccessories.routes"
+import ShoesRoute from "./routes/Shoes.routes"
+import BabyRoute from "./routes/Baby.routes"
+import BookRoute from "./routes/Book.routes"
 import { Request, Response, NextFunction } from "express";
 import AppError from "./utils/AppError";
 
@@ -71,6 +75,10 @@ AppDataSource.initialize()
     app.use("/beauty",BeautyRoute)
     app.use("/kitchen",KitchenRoute)
     app.use("/fashion",FashionRoute)
+    app.use("/book",BookRoute)
+    app.use("/baby",BabyRoute)
+    app.use("/shoes",ShoesRoute)
+    app.use("/gamingaccessories",GamingAccessoriesRoute)
 
     // unhandled routes
     app.all("*", (req: Request, res: Response, next: NextFunction) => {
