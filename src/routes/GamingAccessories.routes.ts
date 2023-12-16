@@ -91,7 +91,7 @@ const router=Router()
  * 
  */
 
-router.route("/").post(Upload.array("image"),postGaming).get(getGaming)
+router.route("/").post(Upload.array("image",20),postGaming).get(getGaming)
 
 router.route("/:id").delete(deleteGaming)
 

@@ -89,7 +89,7 @@ const router=Router()
  *          description: A sucessfull response
  */
 
-router.route("/").get(getBook).post(Upload.array("image"),postBook)
+router.route("/").get(getBook).post(Upload.array("image",20),postBook)
 
 router.route("/:id").delete(deleteBook)
 

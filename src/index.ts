@@ -25,7 +25,7 @@ AppDataSource.initialize()
   .then(async () => {
     const app = express();
     app.use(bodyParser.json());
-    app.use(cors ({ credential: true, origin: "http://localhost:3000" }));
+    app.use(cors ({ credential: true, origin: "http://localhost:5173" }));
     app.use("/public", express.static("src/public"));
     app.use(morgan("dev"));
 

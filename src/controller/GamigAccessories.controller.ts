@@ -11,7 +11,7 @@ interface RequestCustom extends Request {
 
 export const getGaming=async(req:Request,res:Response,next:NextFunction)=>{
     try{
-        const gaming =await gamingRepo.find({
+        const gaming =await gamingRepo.findOne({
             order:{
                 id:"ASC"
             }
@@ -53,6 +53,9 @@ export const postGaming =async(req:RequestCustom,res:Response,next:NextFunction)
         next(new AppError(err.statusCode,err.message))
     }
 }
+
+
+
 
 
 export const deleteGaming =async(req:Request,res:Response,next:NextFunction)=>{

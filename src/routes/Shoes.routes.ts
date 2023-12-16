@@ -91,7 +91,7 @@ const router=Router()
  * 
  */
 
-router.route("/").post(Upload.array("image"),postShoes).get(getShoes)
+router.route("/").post(Upload.array("image",20),postShoes).get(getShoes)
 
 router.route("/:id").delete(deleteShoes)
 
